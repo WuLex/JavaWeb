@@ -1,0 +1,10 @@
+#Sun Feb 28 17:38:51 CST 2016
+TOMCAT_HOME=E\:\\WorkSoftWare\\apache-tomcat-6.0.29
+TOMCAT_TEMP=E\:\\WorkSoftWare\\apache-tomcat-6.0.29\\temp
+LIBRARY_PATH="E\:\\WorkSoftWare\\jdk1.8\\bin;E\:\\WorkSoftWare\\apache-tomcat-6.0.29\\bin"
+TOMCAT_BASE=E\:\\WorkSoftWare\\apache-tomcat-6.0.29
+ENDORSED_DIRS="E\:\\WorkSoftWare\\apache-tomcat-6.0.29/common/endorsed"
+eclipse.preferences.version=1
+JDK_INSTALLATION_NAME=jdk1.8
+JDK_HOME=E\:\\WorkSoftWare\\jdk1.8
+SERVER_ENABLEMENT=true

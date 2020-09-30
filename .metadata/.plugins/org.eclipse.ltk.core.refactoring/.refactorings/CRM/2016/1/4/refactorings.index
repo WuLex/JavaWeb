@@ -1,0 +1,4 @@
+1453005332046	Rename package 'crm.web.ui'
+1453006695672	Delete element
+1453037008914	Extract interface 'UserDao'
+1453037126792	Move compilation unit

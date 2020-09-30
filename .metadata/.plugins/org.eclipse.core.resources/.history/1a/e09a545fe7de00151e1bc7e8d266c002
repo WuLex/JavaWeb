@@ -1,0 +1,31 @@
+package siso.wu.controller;
+
+import java.lang.annotation.Annotation;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import  org.springframework.web.servlet.mvc.Controller;
+ 
+public class HelloWorldController implements Controller {
+
+	
+	@RequestMapping(value="helloWorld",method=RequestMethod.GET)
+	public String helloWorld(Model model){
+		model.addAttribute("message", "StringMvcÄãºÃ£¡");
+		return "helloWorld";
+	}
+
+	@Override
+	public Class<? extends Annotation> annotationType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String value() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

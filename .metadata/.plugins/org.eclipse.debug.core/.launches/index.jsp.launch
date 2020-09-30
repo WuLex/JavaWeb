@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.dltk.javascript.launching.JavaScriptLaunchConfigurationType">
+<stringAttribute key="console_id" value="1455338561416"/>
+<stringAttribute key="mainScript" value="WebRoot/index.jsp"/>
+<stringAttribute key="nature" value="org.eclipse.dltk.javascript.core.nature"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/Struts2Demo/WebRoot/index.jsp"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<stringAttribute key="project" value="Struts2Demo"/>
+<stringAttribute key="url" value=""/>
+<booleanAttribute key="use_dltk_interactive_console" value="false"/>
+</launchConfiguration>

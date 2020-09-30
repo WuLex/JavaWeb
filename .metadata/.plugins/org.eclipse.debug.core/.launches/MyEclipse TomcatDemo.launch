@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.genuitec.eclipse.ast.deploy.core.runonserver">
+<stringAttribute key="ProfilerCPUSettings_filter_type" value="2"/>
+<stringAttribute key="ProfilerCPUSettings_filter_value" value="wu.Dao.*,&#13;&#10;wu.action.*,&#13;&#10;wu.dmi.*,&#13;&#10;wu.model.*,&#13;&#10;wu.property.*"/>
+<stringAttribute key="ProfilerCPUSettings_profile_runnables" value="true"/>
+<stringAttribute key="ProfilerCPUSettings_root_classes" value="wu.Dao.**&#10;wu.action.**&#10;wu.dmi.**&#10;wu.model.**&#10;wu.property.**&#10;"/>
+<stringAttribute key="ProfilerMemorySettings_mode" value="4"/>
+<stringAttribute key="ProfilerMemorySettings_stacktraces" value="-1"/>
+<stringAttribute key="ProfilerMemorySettings_track_every" value="10"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/JspUseDemo"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<stringAttribute key="profiler.settings.cpu.profiling.type" value="0"/>
+<stringAttribute key="profiler.settings.instr.scheme" value="1"/>
+<stringAttribute key="profiler.settings.instrument.empty.methods" value="true"/>
+<stringAttribute key="profiler.settings.instrument.method.invoke" value="true"/>
+<stringAttribute key="profiler.settings.istrument.getter.setter.methods" value="true"/>
+<stringAttribute key="profiler.settings.n.profiled.threads.limit" value="32"/>
+<stringAttribute key="profiler.settings.obj.alloc.stack.sampling.depth" value="-1"/>
+<stringAttribute key="profiler.settings.sampling.interval" value="10"/>
+<booleanAttribute key="runonserver.exploded" value="true"/>
+<stringAttribute key="runonserver.project" value="SpringMvcDemo"/>
+<stringAttribute key="runonserver.server" value="tomcat6Server"/>
+<booleanAttribute key="runoserver.restart" value="true"/>
+</launchConfiguration>

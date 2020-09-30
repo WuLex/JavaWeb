@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="273" key="DIALOG_WIDTH"/>
+		<item value="98" key="DIALOG_Y_ORIGIN"/>
+		<item value="399" key="DIALOG_HEIGHT"/>
+		<item value="376" key="DIALOG_X_ORIGIN"/>
+		<item value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="true" key="wrap"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value=" &lt;result name=&quot;login&quot; type=&quot;redirect&quot;&gt;/login.do&lt;/result&gt;" key="selection"/>
+		<list key="findhistory">
+			<item value=" &lt;result name=&quot;login&quot; type=&quot;redirect&quot;&gt;/login.do&lt;/result&gt;"/>
+			<item value="bean.setId(1);"/>
+			<item value="&lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;"/>
+			<item value="&lt;context-param&gt;"/>
+			<item value="SQLServer"/>
+			<item value="Session session = sessionFactory.openSession();"/>
+			<item value="cn.itcast"/>
+		</list>
+		<list key="replacehistory">
+			<item value="crm"/>
+		</list>
+	</section>
+</section>

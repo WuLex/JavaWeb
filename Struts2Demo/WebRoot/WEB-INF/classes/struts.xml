@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 常量配置 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+
+	<!-- <package name="user" extends="struts-default" namespace="/"> <action 
+		name="login" class="wu.action.LoginAction"> <result name="login" type="redirect"> 
+		/login.jsp </result> <result name="success" type="redirect"> /index.jsp </result> 
+		</action> </package> <include file="wu/config/struts-*.xml"></include> <package 
+		name="setter" extends="struts-default"> <action name="pro" class="wu.property.UserAction"> 
+		</action> <action name="model" class="wu.modeldriven.UserAction"></action> 
+		</package> -->
+
+	<!-- Action中的动态方法调用 -->
+	<!-- 第一种方式:为每个方法配置一个访问路径 -->
+	<package name="default" extends="struts-default">
+		<action name="dmiladd" class="wu.dmi.DMIAction" method="add">
+			<result>/index.jsp</result>
+		</action>
+		<action name="dmilupdate" class="wu.dmi.DMIAction" method="update">
+			<result>/test.jsp</result>
+		</action>
+		<action name="dmildel" class="wu.dmi.DMIAction" method="del">
+		</action>
+		<action name="dmilquery" class="wu.dmi.DMIAction" method="query">
+		</action>
+	</package>
+
+	<!-- 第二种方式:就是一个Action类只配置一个访问路径 -->
+	<package name="dmi2" extends="struts-default">
+		<action name="dmitest" class="wu.dmi.DMIAction">
+			<result>/index.jsp</result>
+		</action>
+	</package>
+	<!-- 第三种方式:使用通配符方式 -->
+	<package name="dmi3" extends="struts-default">
+		<action name="dmido_*_*" class="wu.dmi.{1}" method="{2}"></action>
+
+	</package>
+
+	<package name="validate" extends="struts-default">
+		<action name="register" class="wu.validate.RegisterAction">
+			<result name="input">/validate/register.jsp</result>
+		</action>
+	</package>
+
+	<package name="web" extends="struts-default">
+
+		<action name="noiocweb" class="wu.noioc.WebAction">
+			<result>/show.jsp</result>
+		</action>
+		<action name="iocweb" class="wu.ioc.WebAction">
+			<result>/show.jsp</result>
+		</action>
+	</package>
+
+	<package name="ognl" extends="struts-default">
+		<action name="ognl" class="wu.ognl.OGNLAction">
+			<result>/ognl.jsp</result>
+		</action>
+	</package>
+
+	<package name="ui" extends="struts-default" namespace="/user">
+		<action name="register" class="wu.action.RegisterAction">
+
+		</action>
+	</package>
+
+
+	<package name="noneui" extends="struts-default">
+		<action name="noneui" class="wu.action.NoneUIAction">
+			<result>/noneui.jsp</result>
+		</action>
+	</package>
+
+	<package name="loginoperation" extends="struts-default">
+        
+          <interceptors>
+           <!-- 注册拦截器 -->
+          <interceptor name="security" class="wu.interceptor.SecurityInterceptor"></interceptor>
+           <!-- 注册拦截器栈 -->
+          <interceptor-stack name="securityStack">
+          <interceptor-ref name="security"></interceptor-ref>
+          <interceptor-ref name="defaultStack"></interceptor-ref>
+         
+          </interceptor-stack>
+          </interceptors>
+           <!-- 设置默认的拦截器栈 -->
+           <default-interceptor-ref name="securityStack"></default-interceptor-ref>
+		<action name="login" >
+			<result>/login.jsp</result>
+		</action>
+		<action name="index">
+			<result>/index.jsp</result>	
+		</action>
+		<action name="userlogin" class="wu.action.LoginAction">
+			<!-- <result type="redirect" >/index.do</result> -->	
+		</action>
+	</package>
+
+
+
+</struts>

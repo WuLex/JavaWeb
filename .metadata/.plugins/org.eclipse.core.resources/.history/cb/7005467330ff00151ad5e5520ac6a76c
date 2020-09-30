@@ -1,0 +1,14 @@
+package siso.wu.Total;
+
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
+
+public class fan extends ActionContext {
+
+	public fan(Map<String, Object> context) {
+		super(context);
+		
+	}
+
+}

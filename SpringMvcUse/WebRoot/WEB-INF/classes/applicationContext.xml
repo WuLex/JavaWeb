@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd 
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd 
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<!--IOC:将我们设计的对象放置到spring容器中 -->
+	<bean id="user_oracle" class="siso.wu.dao.UserDaoOracleImpl"></bean>
+	<bean id="user_sqlserver" class="siso.wu.dao.UserDaoSQLServerImpl"></bean>
+
+	<!-- 配置scope 每次都产生一个新的对象 -->
+	<bean id="user_service" init-method="dobefore" destroy-method="doafter"
+		class="siso.wu.service.UserService" scope="singleton">
+		<!-- 通过设置注入依赖的对象 -->
+		<property name="dao" ref="user_oracle"></property>
+	</bean>
+
+	<!-- <bean id="user_service2" class="siso.wu.service.UserService2"> 配置构造函数参数的值 
+		<constructor-arg index="0" ref="user_oracle"></constructor-arg> <constructor-arg 
+		index="1" ref="wulexname"></constructor-arg> </bean> -->
+
+	<!-- c3p0连接池配置 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- 用户名 -->
+		<property name="user" value="sa" />
+		<!-- 用户密码 -->
+		<property name="password" value="wu199010" />
+		<property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="jdbcUrl"
+			value="jdbc:sqlserver://localhost:1433;databaseName=SpringDemo" />
+
+		<!--连接池中保留的最大连接数。默认值: 15 -->
+		<property name="maxPoolSize" value="20" />
+		<!-- 连接池中保留的最小连接数，默认为：3 -->
+		<property name="minPoolSize" value="2" />
+		<!-- 初始化连接池中的连接数，取值应在minPoolSize与maxPoolSize之间，默认为3 -->
+		<property name="initialPoolSize" value="2" />
+
+		<!--最大空闲时间，60秒内未使用则连接被丢弃。若为0则永不丢弃。默认值: 0 -->
+		<property name="maxIdleTime" value="60"></property>
+
+		<!-- 当连接池连接耗尽时，客户端调用getConnection()后等待获取新连接的时间，超时后将抛出SQLException，如设为0则无限期等待。单位毫秒。默认: 
+			0 -->
+		<!-- <property name="checkoutTimeout" value="3000" /> -->
+
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 -->
+		<property name="acquireIncrement" value="2" />
+
+		<!--定义在从数据库获取新连接失败后重复尝试的次数。默认值: 30 ；小于等于0表示无限次 -->
+		<property name="acquireRetryAttempts" value="0" />
+
+		<!--重新尝试的时间间隔，默认为：1000毫秒 -->
+		<property name="acquireRetryDelay" value="1000" />
+
+		<!--每60秒检查所有连接池中的空闲连接。默认值: 0，不检查 -->
+		<property name="idleConnectionTestPeriod" value="60"></property>
+		<!--c3p0全局的PreparedStatements缓存的大小。如果maxStatements与maxStatementsPerConnection均为0，则缓存不生效，只要有一个不为0，则语句的缓存就能生效。如果默认值: 
+			0 -->
+		<property name="maxStatements" value="100"></property>
+		<!--maxStatementsPerConnection定义了连接池内单个连接所拥有的最大缓存statements数。默认值: 0 -->
+		<property name="maxStatementsPerConnection" value="0"></property>
+	</bean>
+
+	<!-- 注册JDBCTemplate模版对象 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<!-- 注入数据源 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 注册DAO -->
+	<bean id="jdbcDAO" class="siso.wu.dao.JDBCDAO">
+		<!-- 注入数据源 -->
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<!-- 定义事务管理器（声明式的事务） -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource">
+		</property>
+	</bean>
+	<!-- 配置事务处理面 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- <tx:method name="add*" propagation="REQUIRED" /> <tx:method name="delete*" 
+				propagation="REQUIRED" /> <tx:method name="update*" propagation="REQUIRED" 
+				/> <tx:method name="add*" propagation="REQUIRED" /> -->
+			<tx:method name="*" />
+		</tx:attributes>
+
+	</tx:advice>
+
+
+	<aop:config>
+		<!-- 配置事务切点 -->
+		<aop:pointcut id="allManagerMethod" expression="execution(* siso.wu.dao.*.*(..))" />
+		<!-- 为事务处切点动态植入事务切面 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" />
+	</aop:config>
+
+
+
+	<!-- <bean id="jdbcTemplateTool" class="org.crazycake.jdbcTemplateTool.JdbcTemplateTool"> 
+		<property name="jdbcTemplate" ref="jdbcTemplate" /> </bean> -->
+</beans>

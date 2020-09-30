@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 常量配置 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+
+	<!-- <package name="user" extends="struts-default" namespace="/"> <action 
+		name="login" class="wu.action.LoginAction"> <result name="login" type="redirect"> 
+		/login.jsp </result> <result name="success" type="redirect"> /index.jsp </result> 
+		</action> </package> <include file="wu/config/struts-*.xml"></include> <package 
+		name="setter" extends="struts-default"> <action name="pro" class="wu.property.UserAction"> 
+		</action> <action name="model" class="wu.modeldriven.UserAction"></action> 
+		</package> -->
+
+	<package name="default" extends="struts-default">
+		<action name="hello">
+			<result>/Hello.jsp</result>
+		</action>
+	</package>
+ 
+    <package name="front" extends="struts-default">
+		<action name="index" class="siso.wu.Total.fan">
+			<result name="success">/Hello.jsp</result>
+		</action>
+	</package>
+ 
+</struts>

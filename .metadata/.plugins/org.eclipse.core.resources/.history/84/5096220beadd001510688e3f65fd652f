@@ -1,0 +1,7 @@
+package siso.wu.controller;
+
+import org.springframework.web.servlet.mvc.Controller;
+
+public class ItemsController implements Controller {
+
+}
